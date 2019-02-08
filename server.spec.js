@@ -8,9 +8,23 @@ describe('the route handlers',  ()  =>  {
             const response = await request(server).get('/');
             expect(response.status).toBe(200);
         })
-        it('respons with json',    async   ()  =>  {
+        it('responds with json',    async   ()  =>  {
             const response = await request(server).get('/');
             expect(response.type).toBe('application/json');
         })
     });
+
+    describe('post /users', ()  =>  {
+        it('responds with 201', async  ()   =>  {
+            const body = { username: "Ryan", password: "Test" };
+            const response = await request(server).post('/users').send(body);
+            expect(response.status).toBe(201);
+        } )
+
+        it('responds with 400', async ()    =>  {
+            const body = {}
+            const response = await request(server).post('/users').send(body);
+            expect(response.stats).toBe(400);
+        })
+    })
 });
