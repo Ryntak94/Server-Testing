@@ -24,7 +24,7 @@ describe('the route handlers',  ()  =>  {
         it('responds with 400', async ()    =>  {
             const body = {}
             const response = await request(server).post('/users').send(body);
-            expect(response.stats).toBe(400);
+            expect(response.status).toBe(400);
         })
     })
 });
