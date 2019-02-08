@@ -24,7 +24,16 @@ server.post('/users', async (req, res)  =>  {
     }   else {
         res.status(400).json({error: 'no username or password'});
     }
+})
 
+server.delete('/users', async   (req, res)  =>  {
+    const user = req.body;
+    if(user.username)    {
+        const response = await db('users').delete(user);
+        res.status(202).json(response);
+    }   else {
+        res.status(404).json({error: 'could not find user'});
+    }
 })
 
 module.exports = server
