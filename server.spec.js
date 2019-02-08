@@ -27,4 +27,17 @@ describe('the route handlers',  ()  =>  {
             expect(response.status).toBe(400);
         })
     })
+
+    describe('delete', ()   =>  {
+        it('responds with a 202',  async   ()  =>  {
+            const username = { username: "Ryan"}
+            const response = await request(server).delete('/users').send(username);
+            expect(response.status).toBe(202)
+        });
+        it('responds with a 404',   async   ()  =>  {
+            const username = {}
+            const response = await request(server).delete('/users').send(username);
+            expect(response.status).toBe(404);
+        })
+    })
 });
