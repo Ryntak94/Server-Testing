@@ -11,6 +11,9 @@ server.use(express.json());
 //     console.log("server listening");
 // })
 
-
+server.get('/', async   (req, res)  =>  {
+    const users = await db('users');
+    res.status(200).json({users});
+})
 
 module.exports = server
